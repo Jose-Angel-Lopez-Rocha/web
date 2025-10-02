@@ -1,0 +1,135 @@
+
+.titulo{
+    text-align: center;
+    color: azure;
+}
+.texto_1{
+    text-align: justify;
+    color: azure;
+}
+
+.p1{
+    color: bisque;
+    font-size: larger;
+    text-align: justify;   
+}
+.li1{
+    color: thistle;
+    font-size: medium;
+    text-align: justify;   
+
+}
+
+.img-centro{
+    margin: 10px auto 10px;
+    display: block;
+}
+
+    ul.sidenav {
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    }
+
+    ul.sidenav li a {
+    display: block;
+    color: #000;
+    padding: 14px 20px;
+    text-decoration: none;
+    }
+    
+    ul.sidenav li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+    }
+
+    div.content {
+    margin-top: 20%;
+    padding: 20%;
+    }
+
+.boton1{
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    }
+.boton2{
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: tomato;
+}
+.boton3{
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: yellow;
+}
+.footer{
+    background-color: #242628;
+    padding: 10px ;
+    display: flex;
+    flex-wrap: wrap;
+    color: aliceblue;
+}
+
+body{
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: cornflowerblue;
+    text-transform: capitalize;
+}
+table {
+        border-collapse: collapse;
+        background-color: rgba(95, 158, 160, 0.658);
+        width: auto;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 10px;
+    }
+
+    tr:nth-child(even) {
+    background-color: #d6eeee80;
+    }
+    th:nth-child(even){
+        background-color: #d6eeeea5;
+    }
+    form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+    form input,
+    form select {
+        padding: 12px;         
+        font-size: 16px;       
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
