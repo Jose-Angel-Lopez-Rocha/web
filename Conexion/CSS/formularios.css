@@ -61,8 +61,20 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    background-color: yellow;
+    background-color: green;
     }
+.boton2{
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: yellow;
+    }    
 .boton3{
     border: none;
     color: white;
