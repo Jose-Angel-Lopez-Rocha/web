@@ -7,23 +7,8 @@ body{
     background-color: cornflowerblue;
     text-transform: capitalize;
 }
-table {
-        border-collapse: collapse;
-        background-color: rgba(95, 158, 160, 0.658);
-        width: auto;
-    }
 
-    th, td {
-        text-align: center;
-        padding: 10px;
-    }
 
-    tr:nth-child(even) {
-    background-color: #d6eeee80;
-    }
-    th:nth-child(even){
-        background-color: #d6eeeea5;
-    }
 .titulo{
     text-align: center;
     color: azure;
@@ -32,20 +17,17 @@ table {
     text-align: justify;
     color: azure;
 }
-.vans{
-    display: block;
-    margin: 0 auto;
-}
+
 .p1{
     color: bisque;
     font-size: larger;
-    text-align: justify;   
+    text-align: justify;
 }
 .li1{
     color: thistle;
     font-size: medium;
     text-align: justify;   
-
+    list-style-type:none;
 }
 
 .img-centro{
@@ -69,11 +51,6 @@ table {
     text-decoration: none;
     }
     
-    ul.sidenav li a.active {
-    background-color: #4CAF50;
-    color: white;
-    }
-
     ul.sidenav li a:hover:not(.active) {
     background-color: #555;
     color: white;
@@ -84,42 +61,6 @@ table {
     padding: 20%;
     }
 
-.boton1{
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    }
-.boton2{
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: right;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color: tomato;
-}
-.boton3{
-    border: none;
-    color: black;
-    padding: 15px 32px;
-    text-align: right;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color: yellow;
-}
 .footer{
     background-color: #242628;
     padding: 10px ;
@@ -127,3 +68,16 @@ table {
     flex-wrap: wrap;
     color: aliceblue;
 }
+.boton4 {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px 200px;
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0 40px;
+    }  
+.boton4:hover{
+    background-color: #338edd;
+    }
