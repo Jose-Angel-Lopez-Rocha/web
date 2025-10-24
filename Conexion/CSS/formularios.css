@@ -1,4 +1,13 @@
 
+body{
+    margin: 0;
+    font-family: sans-serif;
+    min-height: 100vh;
+    background-color: cornflowerblue;
+    text-transform: capitalize;
+}
+
+
 .titulo{
     text-align: center;
     color: azure;
@@ -11,18 +20,12 @@
 .p1{
     color: bisque;
     font-size: larger;
-    text-align: justify;   
+    text-align: justify;
 }
 .li1{
-    color: thistle;
     font-size: medium;
     text-align: justify;   
-
-}
-
-.img-centro{
-    margin: 10px auto 10px;
-    display: block;
+    list-style-type:none;
 }
 
     ul.sidenav {
@@ -51,64 +54,11 @@
     padding: 20%;
     }
 
-.boton1{
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color: green;
-    }
-.boton2{
-    border: none;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color: yellow;
-    }    
-.boton3{
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color: red;
-    }
 
-.footer{
-    background-color: #242628;
-    padding: 10px ;
-    display: flex;
-    flex-wrap: wrap;
-    color: aliceblue;
-}
-
-body{
-    margin: 0;
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: cornflowerblue;
-    text-transform: capitalize;
-}
-table {
+    table {
         border-collapse: collapse;
         background-color: rgba(95, 158, 160, 0.658);
-        width: auto;
+        width: 100%;
     }
 
     th, td {
@@ -122,15 +72,55 @@ table {
     th:nth-child(even){
         background-color: #d6eeeea5;
     }
-    form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-    form input,
-    form select {
-        padding: 12px;         
-        font-size: 16px;       
-        border-radius: 8px;
-        border: 1px solid #ccc;
+    
+    .boton1 {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0 40px;
     }
+    .boton2 {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0 40px;
+    text-decoration: none;
+    }
+    .boton3 {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0 40px;
+    text-decoration: none;
+    }       
+    .boton1:hover {
+    background-color: #88e170;
+    }
+    .boton2:hover {
+    background-color: #dbe822;
+    }
+    .boton3:hover{
+    background-color: rgba(165, 26, 26, 0.849);
+    }
+.footer{
+    background-color: #242628;
+    padding: 10px ;
+    display: flex;
+    flex-wrap: wrap;
+    color: aliceblue;
+}
