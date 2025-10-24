@@ -1,4 +1,3 @@
-<<<<<<< HEAD:Conexion/HTML/cliente_editar_2.php
 <?php
 include "..\PHP\conexion.php";
 $id=$_GET["id"];
@@ -9,216 +8,238 @@ $sql=$conexion->query("SELECT * FROM cliente WHERE IDCliente=$id");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://jose-angel-lopez-rocha.github.io/WEB/Conexion/CSS/formularios.css" rel="stylesheet">
+    <link href="../CSS/crear.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/62d309d756.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Edicion de Clientes</title>
 </head>
 <body>
-    <h1 class="titulo">Edicion de Clientes</h1>
-    <ul class="sidenav">
-        <li><a class="activate" href="index.html">Index</a></li>
-        <li><a href="acerca.html">Acerca de nosotros</a></li>
-        <li><a href="productos.php">Productos</a></li>
-        <li><a href="clientes.php">Clientes</a></li>
-        <li><a href="stock.php">Stock</a></li>
-    </ul>
     <?php
     while($mostrar=$sql->fetch_object()){?>
-    <div class="centro">
-    <form>
-    <ul>
-        <li><h5>Nombre:</h5></li>
-        <input type="text" value="<?=$mostrar->Nombre?>">
-        <li><h5>Apellido paterno:</h5></li>
-        <input type="text" value="<?=$mostrar->Ap_Paterno?>">
-        <li><h5>Apellido materno:</h5></li>
-        <input type="text" value="<?=$mostrar->Ap_Materno?>">
-        <li><h5>Email:</h5></li>
-        <input type="email" value="<?=$mostrar->Email?>">
-        <li><h5>Clave:</h5></li>
-        <input type="password"value="<?=$mostrar->Clave?>">
-        <li><h5>Telefono: </h5></li>
-        <input type="tel"value="<?=$mostrar->Telefono?>">
-        <li><h5>Ciudad: </h5></li>
-        <input type="text"value="<?=$mostrar->Ciudad?>">
-        <li><h5>Fecha de nacimiento:</h5></li>
-        <input type="date"value="<?=$mostrar->Fecha_Nacimiento?>">
-        <h5><form action="#"></h5>
-        <label for="Estados">Estados</label>
-        <select name="Estados" id="Estados">
-        <option value="Ciudad de México">Ciudad de Mexico</option>
-        <option value="Aguascalientes">Aguascalientes</option>
-        <option value="Baja California">Baja California</option>
-        <option value="Baja California Sur">Baja California Sur</option>
-        <option value="Campeche">Campeche</option>
-        <option value="Chiapas">Chiapas</option>
-        <option value="Chihuahua">Chihuahua</option>
-        <option value="Coahuila">Coahuila</option>
-        <option value="Colima">Colima</option>
-        <option value="Durango">Durango</option>
-        <option value="Guanajuato">Guanajuato</option>
-        <option value="Guerrero">Guerrero</option>
-        <option value="Hidalgo">Hidalgo</option>
-        <option value="Jalisco">Jalisco</option>
-        <option value="Estado de Mexico">Estado de Mexico</option>
-        <option value="Michoacan">Michoacan</option>
-        <option value="Morelos">Morelos</option>
-        <option value="Nayarit">Nayarit</option>
-        <option value="Nuevo Leon">Nuevo Leon</option>
-        <option value="Oaxaca">Oaxaca</option>
-        <option value="Puebla">Puebla</option>
-        <option value="Queretaro">Queretaro</option>
-        <option value="Quinta Roo">Quinta Roo</option>
-        <option value="San Luis Potosi">San Luis Potosi</option>
-        <option value="Sinaloa">Sinaloa</option>
-        <option value="Sonora">Sonora</option>
-        <option value="Tabasco">Tabasco</option>
-        <option value="Tamaulipas">Tamaulipas</option>
-        <option value="Tlaxcala">Tlaxcala</option>
-        <option value="Veracruz">Veracruz</option>
-        <option value="Yucatan">Yucatan</option>
-        <option value="Zacatecas">Zacatecas</option>
-        </select>
-    </form>
-</ul>
-    <button type="submit" class="boton3">Confirmar Modificacion</button>
-</form>
-</div>
+    <div id="app">
+        <form @submit.prevent="enviarFormulario" class="formulario1">
+            
+            <!-- Nombre -->
+            <div class="formulario1__grupo" :class="getClaseValidacion('nombre')">
+                <label for="nombre" class="formulario1__label">Nombre</label>
+                <div class="formulario1__grupo_input">
+                    <input 
+                        type="text" 
+                        v-model="nombre" 
+                        id="nombre" 
+                        class="formulario1__input" 
+                        @input="validarCampo('nombre')"
+                        @blur="marcarComoTocado('nombre')"
+                        autocomplete="off">
+                    <i class="formulario1__validacion-estado fa-solid" :class="getClaseIcono('nombre')" v-show="tocado.nombre"></i>
+                </div>
+                <p class="formulario1__input_error" v-if="tocado.nombre && nombre && !valid.nombre">El nombre solo debe tener letras</p>
+            </div>
+
+            <!-- Apellido Paterno -->
+            <div class="formulario1__grupo" :class="getClaseValidacion('apellido_paterno')">
+                <label for="apellido_paterno" class="formulario1__label">Apellido paterno</label>
+                <div class="formulario1__grupo_input">
+                    <input 
+                        type="text" 
+                        v-model="apellido_paterno" 
+                        id="apellido_paterno" 
+                        class="formulario1__input" 
+                        @input="validarCampo('apellido_paterno')"
+                        @blur="marcarComoTocado('apellido_paterno')"
+                        autocomplete="off">
+                    <i class="formulario1__validacion-estado fa-solid" :class="getClaseIcono('apellido_paterno')" v-show="tocado.apellido_paterno"></i>
+                </div>
+                <p class="formulario1__input_error" v-if="tocado.apellido_paterno && apellido_paterno && !valid.apellido_paterno">El apellido solo debe tener letras</p>
+            </div>
+
+            <!-- Apellido Materno -->
+            <div class="formulario1__grupo" :class="getClaseValidacion('apellido_materno')">
+                <label for="apellido_materno" class="formulario1__label">Apellido materno</label>
+                <div class="formulario1__grupo_input">
+                    <input 
+                        type="text" 
+                        v-model="apellido_materno" 
+                        id="apellido_materno" 
+                        class="formulario1__input" 
+                        @input="validarCampo('apellido_materno')"
+                        @blur="marcarComoTocado('apellido_materno')"
+                        autocomplete="off">
+                    <i class="formulario1__validacion-estado fa-solid" :class="getClaseIcono('apellido_materno')" v-show="tocado.apellido_materno"></i>
+                </div>
+                <p class="formulario1__input_error" v-if="tocado.apellido_materno && apellido_materno && !valid.apellido_materno">El apellido solo debe tener letras</p>
+            </div>
+
+            <!-- Email -->
+            <div class="formulario1__grupo" :class="getClaseValidacion('email')">
+                <label for="email" class="formulario1__label">Email</label>
+                <div class="formulario1__grupo_input">
+                    <input 
+                        type="email" 
+                        v-model="email" 
+                        id="email" 
+                        class="formulario1__input" 
+                        @input="validarCampo('email')"
+                        @blur="marcarComoTocado('email')"
+                        autocomplete="off">
+                    <i class="formulario1__validacion-estado fa-solid" :class="getClaseIcono('email')" v-show="tocado.email"></i>
+                </div>
+                <p class="formulario1__input_error" v-if="tocado.email && email && !valid.email">El email no es válido</p>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="formulario1__grupo" :class="getClaseValidacion('clave')">
+                <label for="clave" class="formulario1__label">Contraseña</label>
+                <div class="formulario1__grupo_input">
+                    <input 
+                        type="password" 
+                        v-model="clave" 
+                        id="clave" 
+                        class="formulario1__input" 
+                        @input="validarCampo('clave')"
+                        @blur="marcarComoTocado('clave')"
+                        autocomplete="off">
+                    <i class="formulario1__validacion-estado fa-solid" :class="getClaseIcono('clave')" v-show="tocado.clave"></i>
+                </div>
+                <p class="formulario1__input_error" v-if="tocado.clave && clave && !valid.clave">La contraseña debe tener entre 4 y 12 caracteres</p>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="formulario1__grupo" :class="getClaseValidacion('telefono')">
+                <label for="telefono" class="formulario1__label">Teléfono</label>
+                <div class="formulario1__grupo_input">
+                    <input 
+                        type="tel" 
+                        v-model="telefono" 
+                        id="telefono" 
+                        class="formulario1__input" 
+                        @input="validarCampo('telefono')"
+                        @blur="marcarComoTocado('telefono')"
+                        autocomplete="off">
+                    <i class="formulario1__validacion-estado fa-solid" :class="getClaseIcono('telefono')" v-show="tocado.telefono"></i>
+                </div>
+                <p class="formulario1__input_error" v-if="tocado.telefono && telefono && !valid.telefono">El teléfono solo debe contener números (7-14 dígitos)</p>
+            </div>
+
+            <!-- Fecha de Nacimiento -->
+            <div class="formulario1__grupo" :class="getClaseValidacion('fecha_nac')">
+                <label for="fecha_nac" class="formulario1__label">Fecha de nacimiento</label>
+                <div class="formulario1__grupo_input">
+                    <input 
+                        type="date" 
+                        v-model="fecha_nac" 
+                        id="fecha_nac" 
+                        class="formulario1__input"
+                        @change="validarCampo('fecha_nac'); marcarComoTocado('fecha_nac')">
+                    <i class="formulario1__validacion-estado fa-solid" :class="getClaseIcono('fecha_nac')" v-show="tocado.fecha_nac"></i>
+                </div>
+                <p class="formulario1__input_error" v-if="tocado.fecha_nac && !valid.fecha_nac">Selecciona tu fecha de nacimiento</p>
+            </div>
+
+            <!-- Estado -->
+            <div class="formulario1__grupo" :class="getClaseValidacion('estado')">
+                <label for="estado" class="formulario1__label">Estado</label>
+                <div class="formulario1__grupo_input">
+                    <select v-model="estado" id="estado" class="formulario1__input" @change="validarCampo('estado'); marcarComoTocado('estado')">
+                        <option value="">Selecciona un estado</option>
+                        <option value="Ciudad de México">Ciudad de México</option>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja California">Baja California</option>
+                        <option value="Baja California Sur">Baja California Sur</option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Coahuila">Coahuila</option>
+                        <option value="Colima">Colima</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="Estado de México">Estado de México</option>
+                        <option value="Michoacán">Michoacán</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo León">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="Quintana Roo">Quintana Roo</option>
+                        <option value="San Luis Potosí">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz">Veracruz</option>
+                        <option value="Yucatán">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                    </select>
+                    <i class="formulario1__validacion-estado fa-solid" :class="getClaseIcono('estado')" v-show="tocado.estado"></i>
+                </div>
+                <p class="formulario1__input_error" v-if="tocado.estado && !valid.estado">Selecciona tu estado</p>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="formulario1__grupo" :class="getClaseValidacion('ciudad')">
+                <label for="ciudad" class="formulario1__label">Ciudad</label>
+                <div class="formulario1__grupo_input">
+                    <input 
+                        type="text" 
+                        v-model="ciudad" 
+                        id="ciudad" 
+                        class="formulario1__input" 
+                        @input="validarCampo('ciudad')"
+                        @blur="marcarComoTocado('ciudad')"
+                        autocomplete="off">
+                    <i class="formulario1__validacion-estado fa-solid" :class="getClaseIcono('ciudad')" v-show="tocado.ciudad"></i>
+                </div>
+                <p class="formulario1__input_error" v-if="tocado.ciudad && ciudad && !valid.ciudad">La ciudad solo debe tener letras</p>
+            </div>
+
+            <!-- Términos -->
+            <div class="formulario1__grupo formulario1__grupo-terminos">
+                <label>
+                    <input type="checkbox" v-model="terminos" class="formulario1__checkbox">
+                    Acepto los términos y condiciones
+                </label>
+            </div>
+
+            <!-- Mensajes -->
+            <div class="formulario1__mensaje" v-if="error">
+                <p><i class="fa-solid fa-triangle-exclamation"></i> <b>Error:</b> Por favor, rellena correctamente todos los campos y acepta los términos</p>
+            </div>
+
+            <div class="formulario1__grupo formulario1__grupo-btn-enviar">
+                <button type="submit" class="formulario1__btn">Confirmar</button>
+                <p class="formulario1__mensaje-exito" v-if="exito">✓ Formulario enviado exitosamente</p>
+            </div>
+        </form>
     <?php }
     ?>
-
-    <footer class="footer">
-        <h4>Información</h4>
-        <ul>
-            <li><a href="mailto:lopezrochaangel30@gmail.com">Enviar correo</a></li>
-        </ul>
-
-        <p>
-            <a href="https://jigsaw.w3.org/css-validator/check/referer">
-                <img style="border:0;width:88px;height:31px"
-                    src="https://jigsaw.w3.org/css-validator/images/vcss"
-                    alt="Valid CSS!">
-            </a>
-        </p>
-
-        <p>
-            <a href="https://jigsaw.w3.org/css-validator/check/referer">
-                <img style="border:0;width:88px;height:31px"
-                    src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
-                    alt="Valid CSS!">
-            </a>
-        </p>
-    </footer>
-</body>
-=======
-<?php
-include "..\PHP\conexion.php";
-$id=$_GET["id"];
-$sql=$conexion->query("SELECT * FROM cliente WHERE IDCliente=$id");
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://jose-angel-lopez-rocha.github.io/web/Conexion/CSS/formularios.css" rel="stylesheet">
-    <title>Edicion de Clientes</title>
-</head>
-<body>
-    <h1 class="titulo">Edicion de Clientes</h1>
-    <ul class="sidenav">
-        <li><a class="activate" href="index.html">Index</a></li>
-        <li><a href="acerca.html">Acerca de nosotros</a></li>
-        <li><a href="productos.php">Productos</a></li>
-        <li><a href="clientes.php">Clientes</a></li>
-        <li><a href="stock.php">Stock</a></li>
-    </ul>
-    <?php
-    while($mostrar=$sql->fetch_object()){?>
-    <div class="centro">
-    <form>
-    <ul>
-        <li><h5>Nombre:</h5></li>
-        <input type="text" value="<?=$mostrar->Nombre?>">
-        <li><h5>Apellido paterno:</h5></li>
-        <input type="text" value="<?=$mostrar->Ap_Paterno?>">
-        <li><h5>Apellido materno:</h5></li>
-        <input type="text" value="<?=$mostrar->Ap_Materno?>">
-        <li><h5>Email:</h5></li>
-        <input type="email" value="<?=$mostrar->Email?>">
-        <li><h5>Clave:</h5></li>
-        <input type="password"value="<?=$mostrar->Clave?>">
-        <li><h5>Telefono: </h5></li>
-        <input type="tel"value="<?=$mostrar->Telefono?>">
-        <li><h5>Ciudad: </h5></li>
-        <input type="text"value="<?=$mostrar->Ciudad?>">
-        <li><h5>Fecha de nacimiento:</h5></li>
-        <input type="date"value="<?=$mostrar->Fecha_Nacimiento?>">
-        <h5><form action="#"></h5>
-        <label for="Estados">Estados</label>
-        <select name="Estados" id="Estados">
-        <option value="Ciudad de México">Ciudad de Mexico</option>
-        <option value="Aguascalientes">Aguascalientes</option>
-        <option value="Baja California">Baja California</option>
-        <option value="Baja California Sur">Baja California Sur</option>
-        <option value="Campeche">Campeche</option>
-        <option value="Chiapas">Chiapas</option>
-        <option value="Chihuahua">Chihuahua</option>
-        <option value="Coahuila">Coahuila</option>
-        <option value="Colima">Colima</option>
-        <option value="Durango">Durango</option>
-        <option value="Guanajuato">Guanajuato</option>
-        <option value="Guerrero">Guerrero</option>
-        <option value="Hidalgo">Hidalgo</option>
-        <option value="Jalisco">Jalisco</option>
-        <option value="Estado de Mexico">Estado de Mexico</option>
-        <option value="Michoacan">Michoacan</option>
-        <option value="Morelos">Morelos</option>
-        <option value="Nayarit">Nayarit</option>
-        <option value="Nuevo Leon">Nuevo Leon</option>
-        <option value="Oaxaca">Oaxaca</option>
-        <option value="Puebla">Puebla</option>
-        <option value="Queretaro">Queretaro</option>
-        <option value="Quinta Roo">Quinta Roo</option>
-        <option value="San Luis Potosi">San Luis Potosi</option>
-        <option value="Sinaloa">Sinaloa</option>
-        <option value="Sonora">Sonora</option>
-        <option value="Tabasco">Tabasco</option>
-        <option value="Tamaulipas">Tamaulipas</option>
-        <option value="Tlaxcala">Tlaxcala</option>
-        <option value="Veracruz">Veracruz</option>
-        <option value="Yucatan">Yucatan</option>
-        <option value="Zacatecas">Zacatecas</option>
-        </select>
-    </form>
-</ul>
-    <button type="submit" class="boton3">Confirmar Modificacion</button>
-</form>
 </div>
-    <?php }
-    ?>
-
-    <footer class="footer">
+<footer class="footer">
         <h4>Información</h4>
         <ul>
-            <li><a href="mailto:lopezrochaangel30@gmail.com">Enviar correo</a></li>
+            <li><a href="mailto:lopezrochaangel30@gmail.com">Enviar correo</a></li>    
         </ul>
-
         <p>
-            <a href="https://jigsaw.w3.org/css-validator/check/referer">
-                <img style="border:0;width:88px;height:31px"
-                    src="https://jigsaw.w3.org/css-validator/images/vcss"
-                    alt="Valid CSS!">
+            <a href="https://validator.w3.org/">
+                <img src="../imagenes/valid-html40.png" alt="Valid html" style="border:0;width:88px;height:31px">
             </a>
         </p>
-
         <p>
-            <a href="https://jigsaw.w3.org/css-validator/check/referer">
-                <img style="border:0;width:88px;height:31px"
-                    src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
-                    alt="Valid CSS!">
+            <a href="https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https%3A%2F%2Fjose-angel-lopez-rocha.github.io%2Fweb%2FConexion%2FCSS%2Fformularios.css&usermedium=all&vextwarning=&warning=1">
+                <img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!">
             </a>
         </p>
+        <p>
+            <a href="https://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https%3A%2F%2Fjose-angel-lopez-rocha.github.io%2Fweb%2FConexion%2FCSS%2Fformularios.css&usermedium=all&vextwarning=&warning=1">
+                <img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!">
+            </a>
+        </p>      
     </footer>
+</div>
+<script src="../js/formulario.js"></script>
 </body>
->>>>>>> 7b8f87f (Descripción breve de los cambios):HTML/cliente_editar_2.php
 </html>
